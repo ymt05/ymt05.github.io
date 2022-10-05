@@ -1,6 +1,6 @@
+http://example.com/posts/1a7a1840.html
 http://example.com/categories/index.html
 http://example.com/posts/4a17b156.html
-http://example.com/posts/1a7a1840.html
 http://example.com/tags/index.html
 http://example.com/
 http://example.com/tags/hadoop/
