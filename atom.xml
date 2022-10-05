@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Y先森^Blog</title>
+  <title>Y先森′Blog</title>
   
   <subtitle>生活明朗 万物可爱</subtitle>
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-04T14:49:25.673Z</updated>
+  <updated>2022-10-05T14:20:53.844Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hadoop安装教程</title>
+    <link href="http://example.com/posts/1a7a1840.html"/>
+    <id>http://example.com/posts/1a7a1840.html</id>
+    <published>2022-10-05T13:51:40.000Z</published>
+    <updated>2022-10-05T14:20:53.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>前言<br>hadoop是</p><details class="toggle" style="border: 1px solid bg"><summary class="toggle-button" style="background-color: bg;color: color">display</summary><div class="toggle-content"><p>content</p></div></details>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;前言&lt;br&gt;hadoop是&lt;/p&gt;
+&lt;details class=&quot;toggle&quot; style=&quot;border: 1px solid bg&quot;&gt;&lt;summary class=&quot;toggle-button&quot; style=&quot;background-color: bg;color: </summary>
+      
+    
+    
+    
+    
+    <category term="hadoop" scheme="http://example.com/tags/hadoop/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
