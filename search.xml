@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>hadoop安装教程2</title>
+      <link href="/posts/4a97f391.html"/>
+      <url>/posts/4a97f391.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><h1 id="搭建zookeeper集群部署"><a href="#搭建zookeeper集群部署" class="headerlink" title="搭建zookeeper集群部署"></a>搭建zookeeper集群部署</h1><h1 id="一、安装jdk"><a href="#一、安装jdk" class="headerlink" title="一、安装jdk"></a>一、安装jdk</h1><h2 id="hadoop1操作"><a href="#hadoop1操作" class="headerlink" title="hadoop1操作"></a>hadoop1操作</h2><h3 id="1-创建jdk所需目录"><a href="#1-创建jdk所需目录" class="headerlink" title="1.创建jdk所需目录"></a>1.创建jdk所需目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@master yxiansen]$ mkdir /home/hadoop/data/zookeeper/zkdata -p</span><br><span class="line">[hadoop@master yxiansen]$ mkdir /home/hadoop/data/zookeeper/zkdatalog -p</span><br><span class="line">[hadoop@master zookeeper]$ cd /home/hadoop/data/zookeeper #进入创建的目录</span><br><span class="line">[hadoop@master zookeeper]$ ll#查看创建的目录</span><br><span class="line">总用量 0</span><br><span class="line">drwxrwxr-x. 2 hadoop hadoop 6 10月  8 14:56 zkdata</span><br><span class="line">drwxrwxr-x. 2 hadoop hadoop 6 10月  8 14:56 zkdatalog</span><br></pre></td></tr></table></figure><h3 id="2-通过xftp7将文件上传到指定目录中"><a href="#2-通过xftp7将文件上传到指定目录中" class="headerlink" title="2.通过xftp7将文件上传到指定目录中"></a>2.通过xftp7将文件上传到指定目录中</h3><p><img src="/posts/4a97f391/tupian1.png" alt="tupian1"></p><h3 id="3-查看上传的文件，解压jdk"><a href="#3-查看上传的文件，解压jdk" class="headerlink" title="3.查看上传的文件，解压jdk"></a>3.查看上传的文件，解压jdk</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#查看文件</span><br><span class="line">[hadoop@master zookeeper]$ cd /home/hadoop/app</span><br><span class="line">[hadoop@master app]$ ll#查看刚才上传的文件</span><br><span class="line">总用量 198460</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop 185516505 10月  8 15:19 jdk-8u141-linux-x64.tar.gz</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop  17699306 10月  8 15:19 zookeeper-3.4.6.tar.gz</span><br><span class="line"></span><br><span class="line">#在hadoop1上解压jdk</span><br><span class="line">[hadoop@master zookeeper]$ cd /home/hadoop/app</span><br><span class="line">[hadoop@master app]$ ll#查看刚才上传的文件</span><br><span class="line">总用量 198460</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop 185516505 10月  8 15:19 jdk-8u141-linux-x64.tar.gz</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop  17699306 10月  8 15:19 zookeeper-3.4.6.tar.gz</span><br></pre></td></tr></table></figure><h3 id="3-编辑环境变量"><a href="#3-编辑环境变量" class="headerlink" title="3.编辑环境变量"></a>3.编辑环境变量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@master app]$ ln -s jdk.1.8.0_141/ jdk#给jdk1.8.0_141创建软连接</span><br><span class="line">[hadoop@master app]$ ll</span><br><span class="line">总用量 198460</span><br><span class="line">lrwxrwxrwx. 1 hadoop hadoop        14 10月  8 15:36 jdk -&gt; jdk.1.8.0_141/</span><br><span class="line">drwxr-xr-x. 8 hadoop hadoop       255 7月  12 2017 jdk1.8.0_141</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop 185516505 10月  8 15:19 jdk-8u141-linux-x64.tar.gz</span><br><span class="line">-rw-rw-r--. 1 hadoop hadoop  17699306 10月  8 15:19 zookeeper-3.4.6.tar.gz</span><br><span class="line">[hadoop@master app]$ vi ~/.bashrc</span><br><span class="line"></span><br><span class="line">      1 # .bashrc</span><br><span class="line">      2 </span><br><span class="line">      3 # Source global definitions</span><br><span class="line">      4 if [ -f /etc/bashrc ]; then</span><br><span class="line">      5         . /etc/bashrc</span><br><span class="line">      6 fi</span><br><span class="line">      7 </span><br><span class="line">      8 # Uncomment the following line if you don&#x27;t like systemctl&#x27;s auto-paging feature:</span><br><span class="line">      9 # export SYSTEMD_PAGER=</span><br><span class="line">     10 export JAVA_HOME=/home/hadoop/app/jdk</span><br><span class="line">     11 export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">     12 # User specific aliases and functions</span><br><span class="line">添加10、11行内容，保存。</span><br><span class="line">[hadoop@master app]$ source ~/.bashrc</span><br><span class="line">[hadoop@master app]$ java -version</span><br><span class="line">java version &quot;1.8.0_141&quot;#出现此代码就是配置成功</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_141-b15)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.141-b15, mixed mode)</span><br></pre></td></tr></table></figure><h3 id="4-将jdk拷贝到hadoop2和hadoop3"><a href="#4-将jdk拷贝到hadoop2和hadoop3" class="headerlink" title="4.将jdk拷贝到hadoop2和hadoop3"></a>4.将jdk拷贝到hadoop2和hadoop3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@master app]$ scp -r jdk1.8.0_141 hadoop@hadoop2:/home/hadoop/app</span><br><span class="line">[hadoop@master app]$ scp -r jdk1.8.0_141 hadoop@hadoop3:/home/hadoop/app</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hadoop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hadoop安装教程1</title>
       <link href="/posts/1a7a1840.html"/>
       <url>/posts/1a7a1840.html</url>
@@ -39,9 +58,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -50,9 +69,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
